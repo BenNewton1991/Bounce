@@ -1,0 +1,49 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+  
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ball-manip {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+button {
+  margin: 5px; 
+  
+}
+  
+.first_box {
+  border: 3px solid black;
+  width: 200px;
+  height: 100px;
+}
+  
+.second_box {
+  text-align: center;
+  border: 3px solid blue;
+  margin: 2px;
+  width: 200px;
+  height: 100px;
+}
+  
+.subtitle {
+  text-align: center;
+  height: 25px;
+  font-size: 25px;
+  background-color: #BBBBBB;
+  width: 100%;
+}
+
+#game-box {
+  box-sizing: border-box;
+  margin: 50px;
+  border: 2px solid black; 
+  }
