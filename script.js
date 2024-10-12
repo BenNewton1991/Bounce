@@ -32,18 +32,18 @@ class Ball{
     }
 
     fill_color(){
-        let colors = ["blue","red","green"];
+        let colors = ["blue","red","yellow"];
         return colors[Math.floor(Math.random() * 3)];
     }
 
     update(){
         this.position.add(this.velocity.getX(), this.velocity.getY());
 
-        if (this.position.getX() + 10 > canvas.width || this.position.getX() - 10 < 0){
+        if (this.position.getX() + 15 > canvas.width || this.position.getX() - 15 < 0){
             this.velocity.x = -this.velocity.x;
         }
 
-        if (this.position.getY() + 10 > canvas.height || this.position.getY() - 10 < 0){
+        if (this.position.getY() + 15 > canvas.height || this.position.getY() - 15 < 0){
             this.velocity.y = -this.velocity.y;
         }
     }
@@ -53,6 +53,9 @@ class Ball{
         context.arc(this.position.getX(), this.position.getY(), this.radius, 0, 2 * Math.PI, false);
         context.fillStyle = this.color;
         context.fill();
+        context.lineWidth = 2;
+        context.strokStyle = "black";
+        context.stroke();
         context.closePath(); 
     }
 }
@@ -77,6 +80,16 @@ function add_ball(){
     counter ++;
 }
 
+const many_balls = document.getElementById('add-many-ball');
+many_balls.addEventListener('click', function(){
+    var diffBoing = new Audio('./Sound/diffBoing.mp3')
+    diffBoing.play();
+    for (let i = 0; i < 10; i++){
+        balls.push(new Ball);
+        counter ++;
+    }
+})
+
 
 const canvas = document.getElementById("game-box");
 var context = canvas.getContext("2d");
@@ -91,7 +104,10 @@ canvas.addEventListener('click', function(event){
         console.log('worked')
         if (dist < obj.radius + 10) {
             let pop_sound = new Audio('./Sound/pop.mp3');
-            pop_sound.play();
+            let other_pop = new Audio('./Sound/otherPop.mp3');
+            let pop_sounds = [pop_sound, pop_sound, other_pop];
+            let pop_to_play = Math.floor(Math.random() * pop_sounds.length); 
+            pop_sounds[pop_to_play].play();
             balls.splice(index, 1); 
             draw();
         }
@@ -110,6 +126,8 @@ function draw(){
 }
 
 function clear_ball(){
+    var diffBoing = new Audio('./Sound/deflate.mp3')
+    diffBoing.play();
     balls = [];
     draw();
 }
