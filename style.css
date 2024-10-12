@@ -17,7 +17,11 @@ body {
 
 button {
   margin: 5px; 
-  
+}
+
+.seperator {
+  margin-left: 20px;
+  margin-right: 20px;
 }
   
 .first_box {
